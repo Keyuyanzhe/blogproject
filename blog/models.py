@@ -2,7 +2,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
+# python_2_unicode_compatible 装饰器用于兼容Python2
+@python_2_unicode_compatible
 class Category(models.Model):
     """
     分类Category只需要一个简单的分类名name就可以了
@@ -14,6 +16,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+@python_2_unicode_compatible
 class Tag(models.Model):
     """
     标签Tag也比较简单，和Category一样
@@ -23,6 +27,8 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
+@python_2_unicode_compatible
 class Post(models.Model):
     """
     文章数据库，涉及的字段更多
