@@ -1,8 +1,11 @@
 # coding:utf-8
+import markdown
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
+from django.utils.html import strip_tags
 
 
 # python_2_unicode_compatible 装饰器用于兼容Python2
@@ -56,11 +59,35 @@ class Post(models.Model):
     # 文章作者，User是从django.contrib.auth.models导入的
     author = models.ForeignKey(User)
 
+    # 文章阅读量
+    views = models.PositiveIntegerField(default=0)
+
+    # 摘要
+    excerpt = models.CharField(max_length=200, blank=True)
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
+    def save(self, *args, **kwargs):
+        # 如果没有其他摘要
+        if not self.excerpt:
+            # 首先实例化一个markdown类，用于渲染body的文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+                ])
+            # 从文本摘取前54个字符献给excerpt
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+
+        # 保存到数据库
+        super(Post, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_time']
