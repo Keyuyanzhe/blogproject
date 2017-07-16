@@ -84,7 +84,7 @@ class Post(models.Model):
                 'markdown.extensions.codehilite',
                 ])
             # 从文本摘取前54个字符献给excerpt
-            self.excerpt = strip_tags(md.convert(self.body))[:54]
+            self.excerpt = strip_tags(md.convert(self.body))[:104]
 
         # 保存到数据库
         super(Post, self).save(*args, **kwargs)
