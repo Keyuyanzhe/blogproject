@@ -46,7 +46,7 @@ b {
 }
 
 a {
-    color: #ff0000;
+    color: #333;
 }
 
 a:hover, a:focus {
@@ -59,7 +59,7 @@ a:hover, a:focus {
 }
 
 body {
-    color: #444;
+    color: #333;
     font-family: 'Lato', sans-serif;
 }
 
@@ -228,7 +228,7 @@ img {
 
 .entry-meta {
     text-align: center;
-    color: #DDDDDD;
+    color: #333;
     font-size: 13px;
     margin-bottom: 30px;
 }
@@ -241,9 +241,7 @@ img {
 }
 
 .post-category::after,
-.post-date::after,
-.post-author::after,
-.comments-link::after {
+.post-date::after {
     content: ' ·';
     color: #000;
 }
@@ -685,7 +683,7 @@ img {
     border: 1px solid #aaa;
     margin-bottom: 15px;
     width: 100%;
-    padding: 15px 15px;
+    padding: 8px 15px;
     font-size: 16px;
     line-height: 100%;
     transition: 0.4s border-color linear;
@@ -698,8 +696,10 @@ img {
     padding: 15px 15px;
     font-size: 16px;
     line-height: 20px !important;
-    min-height: 183px;
+    min-height: 80px;
+	max-height: 100px;
     transition: 0.4s border-color linear;
+	resize:none;
 }
 
 .contact-form input:focus, .comment-form input:focus,

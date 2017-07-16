@@ -39,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog', # 注册blog应用
     'comments', # 注册comments应用
+    'haystack',
 ]
+
+HAYSTACK_CONNECTIONS = {
+        'default':{
+            'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+            'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+            },
+        }
+HAYSTACK_SEARCH_RESULTES_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

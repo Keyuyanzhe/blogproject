@@ -15,7 +15,7 @@ def post_comment(request, post_pk):
         form = CommentForm(request.POST)
         
         # 判断数据是否合法
-        if form.is_vaild():
+        if form.is_valid():
             # 利用表单的数据生成comment模型类的实例，但还不保存评论到数据库
             comment = form.save(commit=False)
 
