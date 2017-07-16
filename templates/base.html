@@ -88,7 +88,7 @@
 							<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                         </li>
 						{% empty %}
-						暂无文章！
+						暂无文章
 						{% endfor %}
                     </ul>
                 </div>
@@ -101,7 +101,7 @@
 							<a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
                         </li>
 						{% empty %}
-						暂无归档！
+						暂无归档
 						{% endfor %}
                     </ul>
                 </div>
@@ -115,7 +115,7 @@
 							<a href="{% url 'blog:category' category.pk %}">{{ category.name }}<span class="post-count">({{ category.num_posts }})</span></a>
                         </li>
 						{% empty %}
-						暂无分类！
+						暂无分类
 						{% endfor %}
                     </ul>
                 </div>
@@ -129,7 +129,7 @@
 							<a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
 						</li>
 						{% empty %}
-						暂无标签！
+						暂无标签
 						{% endfor %}
                     </ul>
                 </div>
